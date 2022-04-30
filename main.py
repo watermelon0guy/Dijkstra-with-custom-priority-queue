@@ -1,16 +1,25 @@
-# This is a sample Python script.
+import path_finder
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+graph_1 = {'A': [(2, 'M'), (3, 'P')],
+           'M': [(2, 'A'), (2, 'N')],
+           'N': [(2, 'M'), (2, 'B')],
+           'P': [(3, 'A'), (4, 'B')],
+           'B': [(4, 'P'), (2, 'N')]}
 
+graph_2 = {'A': [(5, 'B'), (4, 'C')],
+           'B': [(5, 'A'), (5, 'D'), (5, 'C')],
+           'C': [(4, 'A'), (5, 'B'), (1, 'E')],
+           'E': [(1, 'C'), (1, 'D')],
+           'D': [(5, 'B'), (1, 'E')]}
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+start = 'A'
+goal = 'B'
+visited = path_finder.dijkstra(start, goal, graph_1)
 
+path_finder.print_path(start, goal, visited)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+start = 'A'
+goal = 'D'
+visited = path_finder.dijkstra(start, goal, graph_2)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+path_finder.print_path(start, goal, visited)
